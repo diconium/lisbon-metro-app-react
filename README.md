@@ -18,7 +18,7 @@ npm install
 To start this app for development purposes:
 
 ```sh
-node start
+npm start
 ```
 
 If you're willing to deploy it (production) you should build it:
