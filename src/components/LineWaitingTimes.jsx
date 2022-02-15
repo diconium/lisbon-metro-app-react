@@ -1,18 +1,29 @@
 import { useState, useEffect } from 'react';
 import { parse, formatDistanceToNow } from 'date-fns'
-
-const lineInfoEndpoint = 'http://localhost:3333/lines';
+import { api } from '../api';
 
 export const LineWaitingTimes = (props) => {
   const line = props.line;
-  const [lineInfo, setLineInfo] = useState([]);
+  const [lineInfo, setLineInfo] = useState();
 
   useEffect(() => {
+    if (!line) {
+      return;
+    }
+
     setLineInfo([]);
-    fetch(`${lineInfoEndpoint}/${line}/waitingTimes`).then(data => data.json()).then(lines => {
+    api.getLineInfo(line).then(lines => {
       setLineInfo(lines);
     });
   }, [line]);
+
+  if (!line) {
+    return null;
+  }
+
+  if (!lineInfo?.length) {
+    return 'Nothing to show.'
+  }
 
   return (
     <>
@@ -27,8 +38,8 @@ export const LineWaitingTimes = (props) => {
             </tr>
           </thead>
           <tbody>
-            {lineInfo.map(info => (
-              <tr>
+            {lineInfo.map((info, index) => (
+              <tr key={index}>
                 <td>{info.id}</td>
                 <td>{info.destination}</td>
                 <td>{info.dock}</td>

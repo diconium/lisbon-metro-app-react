@@ -4,7 +4,7 @@ import { Lines } from './components/Lines';
 import { LineWaitingTimes } from './components/LineWaitingTimes';
 
 function App() {
-  const [selectedLine, setSelectedLine] = useState('green');
+  const [selectedLine, setSelectedLine] = useState();
 
   return (
     <>

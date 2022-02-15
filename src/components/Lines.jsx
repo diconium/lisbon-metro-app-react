@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-
-const linesEndpoint = 'http://localhost:3333/lines';
+import { api } from '../api';
 
 export const Lines = (props) => {
   const callback = props.onSelected;
@@ -8,7 +7,7 @@ export const Lines = (props) => {
   const [lines, setLines] = useState();
 
   useEffect(() => {
-    fetch(linesEndpoint).then(data => data.json()).then(lines => {
+    api.getLines().then(lines => {
       setLines(lines);
     });
   }, []);
