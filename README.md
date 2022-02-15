@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# Lisbon Metro React App
+> This app aims to display some information from Lisbon Metro.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- [![Build Status][travis-image]][gh-actions-url] -->
 
-## Available Scripts
+[Metro API v1.0.1](https://api.metrolisboa.pt:8243/estadoServicoML/1.0.1) isn't very consistent naming wise and such, so this middleware aims to smooth it a bit.
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+```sh
+git clone git@github.com:diconium/lisbon-metro-app-react.git
+cd lisbon-metro-app-react
+npm install
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Fire it up!
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To start this app for development purposes:
 
-### `npm test`
+```sh
+node start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+If you're willing to deploy it (production) you should build it:
 
-### `npm run build`
+```sh
+npm run build
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+and then deploy your newly created artifacts. Or maybe use your CI/CD to do that for you!
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+For more info on this please relay to CRA [documentation][cra-docs]
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Contributing
 
-### `npm run eject`
+1. Fork it (<https://github.com/diconium/lisbon-metro-app-react.git>)
+2. Create your feature branch (`git checkout -b feature/LISMETROAPP-<XXXX>-<desc>`)
+    - where `<XXXX>` is the ticket number in case you're working on a existing ticket;
+    - where `<desc>` being a small description;
+3. Commit your changes (`git commit -am 'feat: added some fooBar'`)
+    - try to use [Semantic Commit Messages][semantic-commit-messages] whenever possible;
+4. Push to the branch (`git push origin feature/LISMETROAPP-<XXXX>-<desc>`)
+5. Create a new Pull Request
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- Markdown link & img dfn's -->
+[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
+<!-- [gh-actions-url]: https://travis-ci.org/dbader/node-datadog-metrics -->
+[cra-docs]: https://create-react-app.dev/docs/getting-started
+[semantic-commit-messages]: https://sparkbox.com/foundry/semantic_commit_messages
