@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { parse, formatDistanceToNow } from 'date-fns'
 import './App.css';
 
-const linesEndpoint = 'http://localhost:3333/lines';
-const lineInfoEndpoint = 'http://localhost:3333/lines';
+const linesEndpoint = 'https://diconium-lisbon-job-fairs.herokuapp.com/lines';
+const lineInfoEndpoint = 'https://diconium-lisbon-job-fairs.herokuapp.com/lines';
 
 function App() {
   const [lines, setLines] = useState();
