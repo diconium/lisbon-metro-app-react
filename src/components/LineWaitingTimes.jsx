@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { parse, formatDistanceToNow } from 'date-fns'
 
-const lineInfoEndpoint = 'http://localhost:3333/lines';
+const lineInfoEndpoint = 'https://diconium-lisbon-job-fairs.herokuapp.com/lines';
 
 export const LineWaitingTimes = (props) => {
   const line = props.line;

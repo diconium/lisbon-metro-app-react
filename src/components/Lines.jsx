@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const linesEndpoint = 'http://localhost:3333/lines';
+const linesEndpoint = 'https://diconium-lisbon-job-fairs.herokuapp.com/lines';
 
 export const Lines = (props) => {
   const callback = props.onSelected;
