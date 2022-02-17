@@ -1,10 +1,21 @@
-import { formatDistanceToNow } from 'date-fns'
-import { addSeconds } from 'date-fns/esm';
+import { useEffect, useState } from 'react';
+import { formatDistanceToNow, addSeconds } from 'date-fns'
 import { useLineInfo } from '../hooks/useLineInfo';
 import { Spinner } from './Spinner';
 
 export const LineInfo = ({ line }) => {
   const { lineInfo, isLoading } = useLineInfo(line);
+  const [nextUpdateIn, setNextUpdateIn] = useState(15);
+
+  useEffect(() => {
+    if (!line) {
+      return;
+    }
+
+    const interval = setInterval(() => setNextUpdateIn(curr => --curr || 15), 1000);
+
+    return () => clearInterval(interval)
+  }, [lineInfo]);
 
   if (isLoading && !lineInfo) {
     return <Spinner />;
@@ -31,7 +42,12 @@ export const LineInfo = ({ line }) => {
 
   return (
     <div className='row'>
-      <h2 className='text-uppercase'>{ line } line informations</h2>
+      <div className="d-flex justify-content-between">
+        <h2 className='text-uppercase'>{ line } line informations</h2>
+        <span>
+          Next update in <strong>{ nextUpdateIn }</strong> seconds
+        </span>
+      </div>
       {[...deadEnd.entries()].map(([title, infos]) => (
         <div key={title} className="col-12 col-lg-6">
           <table className="table table-striped table-hover">
