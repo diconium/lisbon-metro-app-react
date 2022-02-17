@@ -14,5 +14,10 @@ export const api = {
   getStations() {
     const endpoint = `${baseUrl}/stations`;
     return fetch(endpoint).then(data => data.json());
+  },
+
+  getDestinations() {
+    const endpoint = `${baseUrl}/destinations`;
+    return fetch(endpoint).then(data => data.json());
   }
 }
