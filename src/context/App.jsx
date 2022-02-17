@@ -8,10 +8,15 @@ export const AppProvider = ({ children }) => {
   const [stations, setStations] = useState(new Map());
   const [destinations, setDestinations] = useState(new Map());
 
-  useEffect(() => Promise.all([api.getStations(), api.getDestinations()]).then(([stations, destinations]) => {
-    setStations(new Map(stations.map(station => [station.id, station])));
-    setDestinations(new Map(destinations.map(destination => [destination.id?.toString(), destination])));
-  }), []);
+  useEffect(() => {
+    Promise.all([api.getStations(), api.getDestinations()]).then(([stations, destinations]) => {
+      const stationsMap = new Map(stations.map(station => [station.id, station]));
+      const destinationsMap = new Map(destinations.map(destination => [destination.id?.toString(), destination]));
+
+      setStations(stationsMap);
+      setDestinations(destinationsMap);
+    });
+  }, []);
 
   return <AppContext.Provider value={{ stations, destinations }}>{children}</AppContext.Provider>
 }

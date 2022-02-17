@@ -1,4 +1,4 @@
-const baseUrl = 'https://diconium-lisbon-job-fairs.herokuapp.com';
+import { baseUrl } from "../utils/constants";
 
 export const api = {
   getLineInfo(line) {

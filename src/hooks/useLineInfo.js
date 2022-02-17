@@ -5,9 +5,10 @@ import { MINUTES } from '../utils/constants';
 
 export const useLineInfo = (line) => {
   const [lineInfo, setLineInfo] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+
   const stations = useStations();
   const destinations = useDestinations();
-  const [isLoading, setIsLoading] = useState(false);
 
   const mapIdsToNames = useCallback((lines) => lines.map(line => {
     const station = stations.get(line.id);

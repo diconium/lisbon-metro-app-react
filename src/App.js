@@ -15,8 +15,8 @@ function App() {
         <AppProvider>
             <div className="col-12 col-md-8">
               <div className="container">
-              <Lines onSelected={(line) => setSelectedLine(line)} />
-              <LineInfo line={selectedLine}/>
+                <Lines onSelected={(line) => setSelectedLine(line)} />
+                <LineInfo line={selectedLine}/>
               </div>
             </div>
             <div className="col-12 col-md-4">

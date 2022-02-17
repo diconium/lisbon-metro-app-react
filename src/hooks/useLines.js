@@ -19,5 +19,5 @@ export const useLines = () => {
     return () => clearInterval(interval);
   }, []);
 
-  return {lines, isLoading};
+  return { lines, isLoading };
 }
