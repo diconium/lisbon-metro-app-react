@@ -30,7 +30,7 @@ export const useLineInfo = (line) => {
 
     fetchLineInfo(line);
 
-    const interval = setInterval(() => fetchLineInfo(line), 30 * SECONDS);
+    const interval = setInterval(() => fetchLineInfo(line), 15 * SECONDS);
 
     return () => clearInterval(interval);
   }, [fetchLineInfo, line]);
