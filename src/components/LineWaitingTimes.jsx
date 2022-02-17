@@ -1,10 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { parse, formatDistanceToNow } from 'date-fns'
 import { api } from '../api';
+import { useStations } from '../context/Stations';
 
 export const LineWaitingTimes = (props) => {
   const line = props.line;
   const [lineInfo, setLineInfo] = useState();
+  const stations = useStations();
+
+  const mapIdsToNames = useCallback((lines) => lines.map(line => {
+    const station = stations.find(({ id }) => id === line.id);
+
+    if (!station) {
+      return line;
+    }
+
+    return {
+      ...line,
+      id: station.name,
+    }
+
+  }), [stations]);
 
   useEffect(() => {
     if (!line) {
@@ -12,10 +28,10 @@ export const LineWaitingTimes = (props) => {
     }
 
     setLineInfo([]);
-    api.getLineInfo(line).then(lines => {
+    api.getLineInfo(line).then(mapIdsToNames).then(lines => {
       setLineInfo(lines);
     });
-  }, [line]);
+  }, [line, mapIdsToNames]);
 
   if (!line) {
     return null;

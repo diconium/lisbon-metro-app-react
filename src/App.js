@@ -1,24 +1,23 @@
 import { useState } from 'react';
+
 import './App.css';
 import { Lines } from './components/Lines';
 import { LineWaitingTimes } from './components/LineWaitingTimes';
-import { Stations } from './components/Stations';
+import { StationsProvider } from './context/Stations';
 
 function App() {
   const [selectedLine, setSelectedLine] = useState();
-  const [shouldLoadStations, setShouwLoadStations] = useState(false);
 
   return (
     <div className="row">
       <div className="col-6">
         <div className="container">
-          <Lines onSelected={(line) => setSelectedLine(line)} />
-          <hr />
-          <LineWaitingTimes line={selectedLine}/>
+          <StationsProvider>
+            <Lines onSelected={(line) => setSelectedLine(line)} />
+            <hr />
+            <LineWaitingTimes line={selectedLine}/>
+          </StationsProvider>
         </div>
-      </div>
-      <div className="col-6">
-        { shouldLoadStations ? <Stations /> : <button onClick={() => setShouwLoadStations((current) => !current)}>LOAD Stations</button> }
       </div>
     </div>
   );
