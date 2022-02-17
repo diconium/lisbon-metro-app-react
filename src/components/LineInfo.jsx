@@ -1,26 +1,22 @@
 import { useState, useEffect, useCallback } from 'react';
 import { parse, formatDistanceToNow } from 'date-fns'
 import { api } from '../api';
-import { useStations } from '../context/Stations';
+import { useStations, useDestinations } from '../context/App';
 
-export const LineWaitingTimes = (props) => {
+export const LineInfo = (props) => {
   const line = props.line;
   const [lineInfo, setLineInfo] = useState();
   const stations = useStations();
+  const destinations = useDestinations();
 
   const mapIdsToNames = useCallback((lines) => lines.map(line => {
     const station = stations.find(({ id }) => id === line.id);
+    const destination = destinations.find(({ id }) => id.toString() === line.destination);
 
-    if (!station) {
-      return line;
-    }
+    console.log({ destinations, destination, line });
+    return (station && destination) ? { ...line, id: station.name, destination: destination.name } : line;
 
-    return {
-      ...line,
-      id: station.name,
-    }
-
-  }), [stations]);
+  }), [stations, destinations]);
 
   useEffect(() => {
     if (!line) {
@@ -44,7 +40,7 @@ export const LineWaitingTimes = (props) => {
   return (
     <>
       <h2 className='text-uppercase'>{line} line waiting times</h2>
-      <table className="table">
+      <table className="table table-striped table-hover">
         <thead>
           <tr>
             <th>ID</th>

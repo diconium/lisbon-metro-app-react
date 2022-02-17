@@ -2,21 +2,20 @@ import { useState } from 'react';
 
 import './App.css';
 import { Lines } from './components/Lines';
-import { LineWaitingTimes } from './components/LineWaitingTimes';
-import { StationsProvider } from './context/Stations';
+import { LineInfo } from './components/LineInfo';
+import { AppProvider } from './context/App';
 
 function App() {
   const [selectedLine, setSelectedLine] = useState();
 
   return (
     <div className="row">
-      <div className="col-6">
+      <div className="col-12 col-md-6">
         <div className="container">
-          <StationsProvider>
+          <AppProvider>
             <Lines onSelected={(line) => setSelectedLine(line)} />
-            <hr />
-            <LineWaitingTimes line={selectedLine}/>
-          </StationsProvider>
+            <LineInfo line={selectedLine}/>
+          </AppProvider>
         </div>
       </div>
     </div>
