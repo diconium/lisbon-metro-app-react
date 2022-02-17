@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3333';
+const baseUrl = 'https://diconium-lisbon-job-fairs.herokuapp.com';
 
 export const api = {
   getLineInfo(line) {
