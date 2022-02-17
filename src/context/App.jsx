@@ -5,12 +5,12 @@ import { api } from '../api';
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [stations, setStations] = useState([]);
-  const [destinations, setDestinations] = useState([]);
+  const [stations, setStations] = useState(new Map());
+  const [destinations, setDestinations] = useState(new Map());
 
   useEffect(() => Promise.all([api.getStations(), api.getDestinations()]).then(([stations, destinations]) => {
-    setStations(stations);
-    setDestinations(destinations);
+    setStations(new Map(stations.map(station => [station.id, station])));
+    setDestinations(new Map(destinations.map(destination => [destination.id?.toString(), destination])));
   }), []);
 
   return <AppContext.Provider value={{ stations, destinations }}>{children}</AppContext.Provider>

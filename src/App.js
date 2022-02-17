@@ -4,19 +4,25 @@ import './App.css';
 import { Lines } from './components/Lines';
 import { LineInfo } from './components/LineInfo';
 import { AppProvider } from './context/App';
+import { Map } from './components/Map';
 
 function App() {
   const [selectedLine, setSelectedLine] = useState();
 
   return (
-    <div className="row">
-      <div className="col-12 col-md-6">
-        <div className="container">
-          <AppProvider>
-            <Lines onSelected={(line) => setSelectedLine(line)} />
-            <LineInfo line={selectedLine}/>
-          </AppProvider>
-        </div>
+    <div className="container-fluid mt-3">
+      <div className="row">
+        <AppProvider>
+            <div className="col-12 col-md-8">
+              <div className="container">
+              <Lines onSelected={(line) => setSelectedLine(line)} />
+              <LineInfo line={selectedLine}/>
+              </div>
+            </div>
+            <div className="col-12 col-md-4">
+              <Map />
+            </div>
+        </AppProvider>
       </div>
     </div>
   );

@@ -1,19 +1,23 @@
-import { useState, useEffect } from 'react';
-import { api } from '../api';
+import { useLines } from "../hooks/useLines";
 
-export const Lines = (props) => {
-  const callback = props.onSelected;
+export const Lines = ({ onSelected }) => {
+  const { isLoading, lines } = useLines();
 
-  const [lines, setLines] = useState();
-
-  useEffect(() => {
-    api.getLines().then(lines => {
-      setLines(lines);
-    });
-  }, []);
+  if (isLoading && !lines) {
+    return (
+      <div className="d-flex align-items-center">
+        <strong>Loading...</strong>
+        <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+      </div>
+    )
+  }
 
   if (!lines) {
-    return null;
+    return (
+      <div className="alert alert-secondary" role="alert">
+        Nothing to show.
+      </div>
+    );
   }
 
   const { green, blue, red, yellow } = lines;
@@ -30,7 +34,7 @@ export const Lines = (props) => {
               <p className="card-text">{ green.message === '0' ? <span className="text-italic">No messages</span> : null}</p>
             </div>
             <div className="card-footer">
-              <button role="link" className="btn btn-secondary" onClick={() => callback('green')}>+ info</button>
+              <button role="link" className="btn btn-secondary" onClick={() => onSelected('green')}>+ info</button>
             </div>
           </div>
         </div>
@@ -43,7 +47,7 @@ export const Lines = (props) => {
               <p className="card-text">{ blue.message === '0' ? <span className="text-italic">No messages</span> : null}</p>
             </div>
             <div className="card-footer">
-              <button role="link" className="btn btn-secondary" onClick={() => callback('blue')}>+ info</button>
+              <button role="link" className="btn btn-secondary" onClick={() => onSelected('blue')}>+ info</button>
             </div>
           </div>
         </div>
@@ -56,7 +60,7 @@ export const Lines = (props) => {
               <p className="card-text">{ red.message === '0' ? <span className="text-italic">No messages</span> : null}</p>
             </div>
             <div className="card-footer">
-              <button role="link" className="btn btn-secondary" onClick={() => callback('red')}>+ info</button>
+              <button role="link" className="btn btn-secondary" onClick={() => onSelected('red')}>+ info</button>
             </div>
           </div>
         </div>
@@ -69,7 +73,7 @@ export const Lines = (props) => {
               <p className="card-text">{ yellow.message === '0' ? <span className="text-italic">No messages</span> : null}</p>
             </div>
             <div className="card-footer">
-              <button role="link" className="btn btn-secondary" onClick={() => callback('yellow')}>+ info</button>
+              <button role="link" className="btn btn-secondary" onClick={() => onSelected('yellow')}>+ info</button>
             </div>
           </div>
         </div>
