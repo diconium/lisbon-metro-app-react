@@ -13,13 +13,13 @@ function App() {
     <div className="container-fluid mt-3">
       <div className="row">
         <AppProvider>
-            <div className="col-12 col-md-8">
+            <div className="col-12 col-lg-8">
               <div className="container">
                 <Lines onSelected={(line) => setSelectedLine(line)} />
                 <LineInfo line={selectedLine}/>
               </div>
             </div>
-            <div className="col-12 col-md-4">
+            <div className="col-12 col-lg-4">
               <Map />
             </div>
         </AppProvider>

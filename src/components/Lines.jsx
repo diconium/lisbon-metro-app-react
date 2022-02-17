@@ -23,7 +23,7 @@ export const Lines = ({ onSelected }) => {
       <h2 className='text-uppercase'>Line status</h2>
       <div className="row row-cols-1 row-cols-xl-4 g-4">
         <div className="col">
-          <div className="card text-white bg-success mb-3" style={{ maxWidth: "18rem" }}>
+          <div className="card text-white bg-success mb-3">
             <div className="card-header">Green</div>
             <div className="card-body">
               <h5 className="card-title">Status: { green.status }</h5>
@@ -36,7 +36,7 @@ export const Lines = ({ onSelected }) => {
         </div>
 
         <div className="col">
-          <div className="card text-white bg-info mb-3" style={{ maxWidth: "18rem" }}>
+          <div className="card text-white bg-info mb-3">
             <div className="card-header">Blue</div>
             <div className="card-body">
               <h5 className="card-title">Status: { blue.status }</h5>
@@ -49,7 +49,7 @@ export const Lines = ({ onSelected }) => {
         </div>
 
         <div className="col">
-          <div className="card text-white bg-danger mb-3" style={{ maxWidth: "18rem" }}>
+          <div className="card text-white bg-danger mb-3">
             <div className="card-header">Red</div>
             <div className="card-body">
               <h5 className="card-title">Status: { red.status }</h5>
@@ -62,7 +62,7 @@ export const Lines = ({ onSelected }) => {
         </div>
 
         <div className="col">
-          <div className="card text-white bg-warning mb-3" style={{ maxWidth: "18rem" }}>
+          <div className="card text-white bg-warning mb-3">
             <div className="card-header">Yellow</div>
             <div className="card-body">
               <h5 className="card-title">Status: { yellow.status }</h5>

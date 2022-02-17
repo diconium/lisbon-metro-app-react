@@ -32,8 +32,8 @@ export const LineInfo = ({ line }) => {
 
   return (
     <div className='row'>
-      <h2 className='text-uppercase'>{line} line informations</h2>
-      <div className="col-12 col-md-6">
+      <h2 className='text-uppercase'>{ line } line informations</h2>
+      <div className="col-12 col-lg-6">
         <table className="table table-striped table-hover">
           <caption className='caption-top w-100'>Goign to {firstDeadEnd[0]}</caption>
           <thead>
@@ -41,7 +41,7 @@ export const LineInfo = ({ line }) => {
               <th>ID</th>
               <th>Destination</th>
               <th>Dock</th>
-              <th>Last update</th>
+              <th className="d-none d-lg-block">Last update</th>
             </tr>
           </thead>
           <tbody>
@@ -50,13 +50,13 @@ export const LineInfo = ({ line }) => {
                 <td>{info.id}</td>
                 <td>{info.destination}</td>
                 <td>{info.dock}</td>
-                <td>{formatDistanceToNow(parse(info.hour, 'yyyyMMddHmmss', new Date()), )}</td>
+                <td className="d-none d-lg-block">{formatDistanceToNow(parse(info.hour, 'yyyyMMddHmmss', new Date()), )}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <div className="col-12 col-md-6">
+      <div className="col-12 col-lg-6">
         <table className="table table-striped table-hover">
           <caption className='caption-top w-100'>Goign to {secondDeadEnd[0]}</caption>
           <thead>
@@ -64,7 +64,7 @@ export const LineInfo = ({ line }) => {
               <th>ID</th>
               <th>Destination</th>
               <th>Dock</th>
-              <th>Last update</th>
+              <th className="d-none d-lg-block">Last update</th>
             </tr>
           </thead>
           <tbody>
@@ -73,7 +73,7 @@ export const LineInfo = ({ line }) => {
                 <td>{info.id}</td>
                 <td>{info.destination}</td>
                 <td>{info.dock}</td>
-                <td>{formatDistanceToNow(parse(info.hour, 'yyyyMMddHmmss', new Date()), )}</td>
+                <td className="d-none d-lg-block">{formatDistanceToNow(parse(info.hour, 'yyyyMMddHmmss', new Date()), )}</td>
               </tr>
             ))}
           </tbody>
