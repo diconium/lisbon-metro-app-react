@@ -1,11 +1,13 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { useStations } from '../context/App'
 import L from 'leaflet';
+
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  // iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  iconUrl: "https://www.metrolisboa.pt/wp-content/uploads/2019/07/metro_icon.svg",
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
