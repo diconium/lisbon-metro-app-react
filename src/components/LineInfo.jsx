@@ -18,7 +18,7 @@ export const LineInfo = ({ line }) => {
     );
   }
 
-  const extremes = lineInfo.reduce((acc, info) => {
+  const deadEnd = lineInfo.reduce((acc, info) => {
     if (acc.has(info.destination)) {
       acc.get(info.destination).push(info)
     } else {
@@ -28,14 +28,14 @@ export const LineInfo = ({ line }) => {
     return acc;
   }, new Map());
 
-  const [firstExtreme, secondExtreme] = extremes.entries();
+  const [firstDeadEnd, secondDeadEnd] = deadEnd.entries();
 
   return (
     <div className='row'>
       <h2 className='text-uppercase'>{line} line informations</h2>
       <div className="col-12 col-md-6">
         <table className="table table-striped table-hover">
-          <caption className='caption-top w-100'>Goign to {firstExtreme[0]}</caption>
+          <caption className='caption-top w-100'>Goign to {firstDeadEnd[0]}</caption>
           <thead>
             <tr>
               <th>ID</th>
@@ -45,7 +45,7 @@ export const LineInfo = ({ line }) => {
             </tr>
           </thead>
           <tbody>
-            {firstExtreme[1].map((info, index) => (
+            {firstDeadEnd[1].map((info, index) => (
               <tr key={index}>
                 <td>{info.id}</td>
                 <td>{info.destination}</td>
@@ -58,7 +58,7 @@ export const LineInfo = ({ line }) => {
       </div>
       <div className="col-12 col-md-6">
         <table className="table table-striped table-hover">
-          <caption className='caption-top w-100'>Goign to {secondExtreme[0]}</caption>
+          <caption className='caption-top w-100'>Goign to {secondDeadEnd[0]}</caption>
           <thead>
             <tr>
               <th>ID</th>
@@ -68,7 +68,7 @@ export const LineInfo = ({ line }) => {
             </tr>
           </thead>
           <tbody>
-            {secondExtreme[1].map((info, index) => (
+            {secondDeadEnd[1].map((info, index) => (
               <tr key={index}>
                 <td>{info.id}</td>
                 <td>{info.destination}</td>
