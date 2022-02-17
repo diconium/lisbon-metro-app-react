@@ -1,16 +1,12 @@
 import { parse, formatDistanceToNow } from 'date-fns'
 import { useLineInfo } from '../hooks/useLineInfo';
+import { Spinner } from './Spinner';
 
 export const LineInfo = ({ line }) => {
   const { lineInfo, isLoading } = useLineInfo(line);
 
   if (isLoading && !lineInfo) {
-    return (
-      <div className="d-flex align-items-center">
-        <strong>Loading...</strong>
-        <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-      </div>
-    )
+    return <Spinner />;
   }
 
   if (!lineInfo?.length) {

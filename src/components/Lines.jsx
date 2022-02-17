@@ -1,15 +1,11 @@
 import { useLines } from "../hooks/useLines";
+import { Spinner } from './Spinner';
 
 export const Lines = ({ onSelected }) => {
   const { isLoading, lines } = useLines();
 
   if (isLoading && !lines) {
-    return (
-      <div className="d-flex align-items-center">
-        <strong>Loading...</strong>
-        <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-      </div>
-    )
+    return <Spinner />;
   }
 
   if (!lines) {
