@@ -28,26 +28,26 @@ export const LineWaitingTimes = (props) => {
   return (
     <>
       <h2 className='text-uppercase'>{line} line waiting times</h2>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Destination</th>
-              <th>Dock</th>
-              <th>Hour</th>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Destination</th>
+            <th>Dock</th>
+            <th>Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          {lineInfo.map((info, index) => (
+            <tr key={index}>
+              <td>{info.id}</td>
+              <td>{info.destination}</td>
+              <td>{info.dock}</td>
+              <td>{formatDistanceToNow(parse(info.hour, 'yyyyMMddHmmss', new Date()), )}</td>
             </tr>
-          </thead>
-          <tbody>
-            {lineInfo.map((info, index) => (
-              <tr key={index}>
-                <td>{info.id}</td>
-                <td>{info.destination}</td>
-                <td>{info.dock}</td>
-                <td>{formatDistanceToNow(parse(info.hour, 'yyyyMMddHmmss', new Date()), )}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          ))}
+        </tbody>
+      </table>
     </>
   );
 }
