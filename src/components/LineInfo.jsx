@@ -1,4 +1,5 @@
-import { parse, formatDistanceToNow } from 'date-fns'
+import { formatDistanceToNow } from 'date-fns'
+import { addSeconds } from 'date-fns/esm';
 import { useLineInfo } from '../hooks/useLineInfo';
 import { Spinner } from './Spinner';
 
@@ -28,57 +29,38 @@ export const LineInfo = ({ line }) => {
     return acc;
   }, new Map());
 
-  const [firstDeadEnd, secondDeadEnd] = deadEnd.entries();
-
   return (
     <div className='row'>
       <h2 className='text-uppercase'>{ line } line informations</h2>
-      <div className="col-12 col-lg-6">
-        <table className="table table-striped table-hover">
-          <caption className='caption-top w-100'>Goign to {firstDeadEnd[0]}</caption>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Destination</th>
-              <th>Dock</th>
-              <th className="d-none d-lg-block">Last update</th>
-            </tr>
-          </thead>
-          <tbody>
-            {firstDeadEnd[1].map((info, index) => (
-              <tr key={index}>
-                <td>{info.id}</td>
-                <td>{info.destination}</td>
-                <td>{info.dock}</td>
-                <td className="d-none d-lg-block">{formatDistanceToNow(parse(info.hour, 'yyyyMMddHmmss', new Date()), )}</td>
+      {[...deadEnd.entries()].map(([title, infos]) => (
+        <div key={title} className="col-12 col-lg-6">
+          <table className="table table-striped table-hover">
+            <caption className='caption-top w-100'>Goign to {title}</caption>
+            <thead>
+              <tr>
+                <th>Station</th>
+                <th>Last Stop</th>
+                <th>Next trains</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div className="col-12 col-lg-6">
-        <table className="table table-striped table-hover">
-          <caption className='caption-top w-100'>Goign to {secondDeadEnd[0]}</caption>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Destination</th>
-              <th>Dock</th>
-              <th className="d-none d-lg-block">Last update</th>
-            </tr>
-          </thead>
-          <tbody>
-            {secondDeadEnd[1].map((info, index) => (
-              <tr key={index}>
-                <td>{info.id}</td>
-                <td>{info.destination}</td>
-                <td>{info.dock}</td>
-                <td className="d-none d-lg-block">{formatDistanceToNow(parse(info.hour, 'yyyyMMddHmmss', new Date()), )}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {infos.map((info, index) => (
+                <tr key={index}>
+                  <td>{info.id}</td>
+                  <td>{info.destination}</td>
+                  <td>
+                    {info.trains.map(train => (
+                      <div key={train.id}>
+                        {formatDistanceToNow(addSeconds(Date.now(), train.arriveIn))}
+                      </div>
+                    ))}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))}
     </div>
   );
 }

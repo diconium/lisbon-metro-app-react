@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { api } from '../api';
 import { useStations, useDestinations } from '../context/App';
-import { MINUTES } from '../utils/constants';
+import { SECONDS } from '../utils/constants';
 
 export const useLineInfo = (line) => {
   const [lineInfo, setLineInfo] = useState();
@@ -30,7 +30,7 @@ export const useLineInfo = (line) => {
 
     fetchLineInfo(line);
 
-    const interval = setInterval(() => fetchLineInfo(line), 5 * MINUTES);
+    const interval = setInterval(() => fetchLineInfo(line), 30 * SECONDS);
 
     return () => clearInterval(interval);
   }, [fetchLineInfo, line]);
