@@ -20,7 +20,7 @@ function App() {
               </div>
             </div>
             <div className="col-12 col-lg-4">
-              <Map />
+              <Map selectedLine={selectedLine} />
             </div>
         </AppProvider>
       </div>

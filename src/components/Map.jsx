@@ -30,7 +30,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
-export const Map = () => {
+export const Map = ({ selectedLine }) => {
   const stations = useStations();
 
   if (!stations.size) {
@@ -38,11 +38,12 @@ export const Map = () => {
   }
 
   const markers = [...stations.values()]
+    .filter(({ line = [] }) => line ? line.includes(selectedLine) : true)
     .map(marker => ({
-        ...marker,
-        icon: marker.line?.length > 1 ? iconsMap.default : iconsMap[marker.line[0]],
+      ...marker,
+      icon: marker.line?.length > 1 ? iconsMap.default : iconsMap[marker.line[0]],
     }));
-
+console.log(markers);
   return (
     <div className="row">
       <MapContainer zoom={12} center={[markers[0]?.position.lat, markers[0]?.position.lon]} style={{ height: '98vh' }}>
