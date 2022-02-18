@@ -3,7 +3,7 @@
 
 <!-- [![Build Status][travis-image]][gh-actions-url] -->
 
-In this app we're going to point to [Metro Api Middeware][metro-api-middlware] in order to play around with some data from Lisbon Metro.
+In this app we're going to point to [Metro Api Middeware][metro-api-middleware] in order to play around with some data from Lisbon Metro.
 
 ## Installation
 
@@ -46,5 +46,5 @@ For more info on this please relay to CRA [documentation][cra-docs]
 [travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
 <!-- [gh-actions-url]: https://travis-ci.org/dbader/node-datadog-metrics -->
 [cra-docs]: https://create-react-app.dev/docs/getting-started
-[metro-api-middlware]: https://api.metrolisboa.pt:8243/estadoServicoML/1.0.1
+[metro-api-middleware]: https://github.com/diconium/lisbon-metro-app-middleware
 [semantic-commit-messages]: https://sparkbox.com/foundry/semantic_commit_messages
