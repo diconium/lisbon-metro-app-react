@@ -43,7 +43,7 @@ export const Map = ({ selectedLine }) => {
       ...marker,
       icon: marker.line?.length > 1 ? iconsMap.default : iconsMap[marker.line[0]],
     }));
-console.log(markers);
+
   return (
     <div className="row">
       <MapContainer zoom={12} center={[markers[0]?.position.lat, markers[0]?.position.lon]} style={{ height: '98vh' }}>
