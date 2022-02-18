@@ -15,7 +15,7 @@ export const LineInfo = ({ line }) => {
     const interval = setInterval(() => setNextUpdateIn(curr => --curr || 15), 1000);
 
     return () => clearInterval(interval)
-  }, [lineInfo]);
+  }, [line, lineInfo]);
 
   if (isLoading && !lineInfo) {
     return <Spinner />;
