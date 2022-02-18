@@ -5,16 +5,18 @@ import { Spinner } from './Spinner';
 
 export const LineInfo = ({ line }) => {
   const { lineInfo, isLoading } = useLineInfo(line);
-  const [nextUpdateIn, setNextUpdateIn] = useState(15);
+  const [lastUpdateAt, setLastUpdateAt] = useState(0);
 
   useEffect(() => {
     if (!line) {
       return;
     }
 
-    const interval = setInterval(() => setNextUpdateIn(curr => --curr || 15), 1000);
+    setLastUpdateAt(0);
 
-    return () => clearInterval(interval)
+    const interval = setInterval(() => setLastUpdateAt((curr) => curr + 1), 1000);
+
+    return () => clearInterval(interval);
   }, [line, lineInfo]);
 
   if (isLoading && !lineInfo) {
@@ -45,7 +47,7 @@ export const LineInfo = ({ line }) => {
       <div className="d-flex justify-content-between">
         <h2 className='text-uppercase'>{ line } line informations</h2>
         <span>
-          Next update in <strong>{ nextUpdateIn }</strong> seconds
+          Last update <strong>{ lastUpdateAt }</strong> seconds ago
         </span>
       </div>
       {[...deadEnd.entries()].map(([title, infos]) => (
